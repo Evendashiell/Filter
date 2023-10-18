@@ -9,11 +9,14 @@ filter.addEventListener('keyup', filterItems)
 function addItem(e){
     e.preventDefault();
 
-    var newItem = document.getElementById('item').value;
+    var newItem = document.querySelector('#item').value;
+    var newItemm = document.querySelector('#itemm').value;
     var li = document.createElement('li');
     li.className = 'list-group-item';
     li.appendChild(document.createTextNode(newItem));
+    li.appendChild(document.createTextNode(newItemm));
 
+    
     var del = document.createElement('button');
     del.className = 'btn btn-danger btn-sm float-right delete';
     del.appendChild(document.createTextNode('Delete'));
@@ -38,7 +41,8 @@ function addItem(e){
         var items = itemList.getElementsByTagName('li');
         Array.from(items).forEach(function(item) {
             var itemName = item.firstChild.textContent;
-            if(itemName.toLowerCase().indexOf(text) != -1){
+            var itemmName = item.childNodes[1].textContent;
+            if(itemName.toLowerCase().indexOf(text) != -1 || itemmName.toLowerCase().indexOf(text) != -1){
                 item.style.display = 'block';
             }else {
                 item.style.display = 'none';
